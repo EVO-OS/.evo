@@ -10,6 +10,18 @@
 #include "evo_format.h"
 #include "evo_metadata.h"
 
+static struct option long_options[] = {
+    {"input", required_argument, 0, 'i'},
+    {"output", required_argument, 0, 'o'},
+    {"supported-architectures", required_argument, 0, 'a'},
+    {"min-screen-width", required_argument, 0, 'w'},
+    {"min-screen-height", required_argument, 0, 'h'},
+    {"required-permissions", required_argument, 0, 'p'},
+    {"target-sdk-version", required_argument, 0, 's'},
+    {"min-os-version", required_argument, 0, 'v'},
+    {0, 0, 0, 0}
+};
+
 void parse_supported_architectures(evo_metadata *metadata, const char *architectures);
 void parse_required_permissions(evo_metadata *metadata, const char *permissions);
 
@@ -70,7 +82,21 @@ int main(int argc, char *argv[]) {
 
     // Parse command-line arguments
     int opt;
-    while ((opt = getopt(argc, argv, "i:o:a:w:h:p:s:v:")) != -1) {
+    int option_index = 0;
+    static struct option long_options[] = {
+        {"input", required_argument, 0, 'i'},
+        {"output", required_argument, 0, 'o'},
+        {"supported-architectures", required_argument, 0, 'a'},
+        {"min-screen-width", required_argument, 0, 'w'},
+        {"min-screen-height", required_argument, 0, 'h'},
+        {"required-permissions", required_argument, 0, 'p'},
+        {"target-sdk-version", required_argument, 0, 's'},
+        {"min-os-version", required_argument, 0, 'v'},
+        {0, 0, 0, 0}
+    };
+
+    while ((opt = getopt_long(argc, argv, "", long_options, &option_index)) != -1) {
+        printf("Parsing option: %c\n", opt);
         switch (opt) {
             case 'i':
                 input_file = optarg;
@@ -130,9 +156,7 @@ int main(int argc, char *argv[]) {
     header.version = 1;
     header.data_size = input_stat.st_size;
 
-    // Initialize metadata
-    evo_metadata metadata;
-    initialize_default_metadata(&metadata);
+    // Set metadata size in header
     header.metadata_size = sizeof(evo_metadata);
 
 
