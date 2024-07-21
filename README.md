@@ -1,67 +1,12 @@
-# .evo File Format
+# .evo Package Format
 
-## Overview
+## Introduction
+The .evo package format is a versatile package management system designed to be compatible with various platforms, including mobile devices. It combines features from popular formats like .deb and .apk to provide a unified solution for software distribution and installation.
 
-The `.evo` file format is a specialized format designed for [briefly describe the purpose of the `.evo` format, e.g., packaging applications, data storage, etc.]. This repository contains the specification, implementation, and tools related to `.evo` files.
+## File Structure
+The .evo file consists of three main sections: header, metadata, data, and footer.
 
-## Features
-
-- **File Structure**: Define the structure of `.evo` files, including headers, data sections, and footers.
-- **Operations**: Supports creation, reading, writing, and manipulation of `.evo` files.
-- **Compatibility**: Designed to work with [specify systems or platforms].
-
-## Getting Started
-
-### Prerequisites
-
-- [List any prerequisites or dependencies, e.g., specific libraries, tools, or development environments.]
-
-### Installation
-
-1. **Clone the Repository**
-    ```bash
-    git clone https://github.com/yourusername/evo-format.git
-    cd evo-format
-    ```
-
-2. **Build the Tools**
-    ```bash
-    make
-    ```
-
-3. **Install Dependencies**
-    [Provide instructions to install any necessary dependencies or libraries.]
-
-### Usage
-
-#### Creating a .evo File
-
-[Provide an example command or code snippet to create a `.evo` file.]
-
-```bash
-./evo-create --input input_file --output output_file.evo
-```
-
-#### Reading a .evo File
-
-[Provide an example command or code snippet to read a `.evo` file.]
-
-```bash
-./evo-read --input input_file.evo
-```
-
-#### Modifying a .evo File
-
-[Provide an example command or code snippet to modify a `.evo` file.]
-
-```bash
-./evo-modify --input input_file.evo --changes changes_file
-```
-
-### File Format Specification
-
-**Header**
-
+### Header
 ```c
 struct evo_header {
     char magic[8];        // Magic number for .evo files
@@ -71,63 +16,54 @@ struct evo_header {
 };
 ```
 
-**Data Section**
-
-[Describe the data section, including any important attributes or structure.]
-
-**Footer**
-
+### Footer
 ```c
 struct evo_footer {
     uint32_t checksum;    // Checksum for data integrity
 };
 ```
 
-### Development
+## Usage
+The .evo format comes with three main tools: evo-create, evo-read, and evo-modify.
 
-#### Building from Source
-
-[Instructions for building the project from source.]
-
-1. **Clone the Repository**
-    ```bash
-    git clone https://github.com/EVO-OS/.evo/.git
-    cd evo-format
-    ```
-
-2. **Build the Project**
-    ```bash
-    make
-    ```
-
-#### Running Tests
-
-[Instructions for running tests, if applicable.]
-
+### Creating a .evo package
 ```bash
-make test
+./evo-create --input input_file --output output_file.evo
 ```
 
-### Contributing
+### Reading a .evo package
+```bash
+./evo-read --input input_file.evo
+```
 
+### Modifying a .evo package
+```bash
+./evo-modify --input input_file.evo --changes changes_file --output <output_file.evo>
+```
+
+## Building the Tools
+To build the .evo tools, use the following command:
+```bash
+make
+```
+
+## Compatibility
+The .evo format is designed to be compatible with both .deb and .apk formats, allowing for seamless integration with existing package management systems on various platforms.
+
+### Mobile Compatibility
+The .evo format supports mobile platforms, ensuring that packages can be easily distributed and installed on mobile devices. When creating .evo packages for mobile use, consider platform-specific requirements and limitations.
+
+For more detailed information on using .evo packages on specific platforms or for advanced usage, please refer to the documentation of individual tools.
+
+## Contributing
 [Guidelines for contributing to the repository, including coding standards, how to submit pull requests, and where to file issues.]
 
-### License
-
+## License
 [Specify the license under which the project is distributed, e.g., MIT License, GPL.]
 
 This project is licensed under the [License Name] - see the [LICENSE](LICENSE) file for details.
 
-### Contact
-
-[Provide contact information for further inquiries or support.]
-
+## Contact
 - **Author**: kasinadhsarma
 - **Email**: kasinadhsarma@gmail.com
 - **GitHub**: github.com/kasinadhsarma
-
----
-
-### Summary
-
-The README.md file for the `.evo` format repository should include an overview of the format, installation and usage instructions, details of the file format specification, development guidelines, and information about contributing and licensing. Providing clear examples and detailed instructions will help users understand and effectively use the `.evo` format.
